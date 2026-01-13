@@ -172,9 +172,114 @@ saludar.call(persona);
 📦 apply
 -Diferencia con call: Recibe los argumentos en un arreglo
 
-````
-saludar.apply(persona);
-````
+Aquí tienes una estructura profesional y limpia, optimizada para que la copies y la pegues directamente en el archivo `README.md` de tu repositorio de GitHub.
+
+---
+
+```markdown
+# JavaScript .apply() 🚀
+
+Una guía rápida sobre el funcionamiento del método `.apply()` en JavaScript, sus diferencias con otros métodos de contexto y casos de uso.
+
+---
+
+## 📝 Definición
+
+El método `.apply()` llama a una función dándole un valor de `this` de forma explícita y pasando los argumentos como un **arreglo** (o un objeto similar a un arreglo).
+
+### Sintaxis
+```javascript
+funcion.apply(thisArg, [argsArray])
+
+```
+
+* **`thisArg`**: El valor que se utilizará como `this`.
+* **`argsArray`**: Un arreglo que contiene los argumentos que se le pasarán a la función.
+
+---
+
+## 💡 Ejemplo Básico
+
+Es ideal cuando quieres reutilizar una función en diferentes objetos:
+
+```javascript
+function describir(hobby, edad) {
+  console.log(`Soy ${this.nombre}, tengo ${edad} años y me gusta el ${hobby}.`);
+}
+
+const persona = { nombre: "Carlos" };
+
+// Invocación con apply
+describir.apply(persona, ["Ajedrez", 28]);
+// Salida: Soy Carlos, tengo 28 años y me gusta el Ajedrez.
+
+```
+
+---
+
+## ⚖️ Comparativa: apply vs call vs bind
+
+A menudo se confunden, pero la clave está en **cómo pasan los argumentos** y **cuándo se ejecutan**.
+
+| Método | Argumentos | Ejecución |
+| --- | --- | --- |
+| **`.apply()`** | Un **Arreglo** `[arg1, arg2]` | Inmediata |
+| **`.call()`** | Separados por **Comas** `arg1, arg2` | Inmediata |
+| **`.bind()`** | Separados por **Comas** | Devuelve una nueva función |
+
+> **Tip:** Recuerda **A** de **A**pply = **A**rray.
+
+---
+
+## 🛠️ Casos de Uso Comunes
+
+### 1. Encontrar el máximo/mínimo en un arreglo (Legacy)
+
+Antes de ES6, esta era la forma estándar de pasar un array a funciones que esperan parámetros individuales:
+
+```javascript
+const numeros = [5, 2, 9, 1, 7];
+const max = Math.max.apply(null, numeros); 
+console.log(max); // 9
+
+```
+
+### 2. Encadenar constructores
+
+Se puede usar para delegar la inicialización de un objeto a otro constructor:
+
+```javascript
+function Producto(nombre, precio) {
+  this.nombre = nombre;
+  this.precio = precio;
+}
+
+function Comida(nombre, precio) {
+  Producto.apply(this, [nombre, precio]);
+  this.categoria = 'alimento';
+}
+
+const manzana = new Comida('Manzana', 1.5);
+
+```
+
+---
+
+## ⚠️ ¿Sigue siendo relevante?
+
+Con la llegada de **ES6**, la mayoría de los casos de uso de `.apply()` ahora se resuelven con el **Spread Operator (`...`)**, que es más legible:
+
+``` javascript
+// Antes (apply)
+Math.max.apply(null, [1, 2, 3]);
+
+// Ahora (Spread operator)
+Math.max(...[1, 2, 3]);
+
+```
+
+Sin embargo, entender `.apply()` es fundamental para comprender el manejo de contextos en JavaScript y para trabajar en proyectos que mantengan compatibilidad con versiones anteriores.
+
 
 ----------------------------------------
 🎮 Mini reto para el grupo
