@@ -166,41 +166,100 @@ Piensa en this como una flecha que apunta a algo según cómo llamas la función
 
 ----------------------------------------
 # ➡️ Arrow Functions y this
-Idea clave: Las arrow functions NO crean su propio this.
-Heredan el this del contexto donde fueron creadas.
+# ➡️ Arrow Functions y this
+¿QUÉ ES UNA FUNCIÓN?
 
-Ejemplo que falla
+Es un bloque de código
+Se guarda para usarse después
+Se ejecuta cuando la llamamos
+
 ````
-const mascota = {
-  nombre: "Thor",
-  mostrar() {
+function saludar() {
+  console.log("Hola");
+}
+````
+
+
+FORMAS DE CREAR FUNCIONES
+Existen dos formas de crear funciones
+
+🔹 Función normal
+````
+function sumar(a, b) {
+  return a + b;
+}
+````
+
+🔹 Arrow function
+````
+const sumar = (a, b) => a + b;
+````
+
+¿Qué significa this?
+
+Hace referencia a quién ejecuta la función
+Su valor puede cambiar.
+This no es una variable normal.
+JavaScript decide su valor dependiendo de quién llama la función.
+
+EL PROBLEMA: this SE PIERDE
+````
+const persona = {
+  nombre: "Camila",
+  saludar: function () {
     setTimeout(function () {
       console.log(this.nombre);
     }, 1000);
   }
 };
 
-mascota.mostrar();
-````
-Resultado
--> undefined
-La función normal dentro de setTimeout pierde el contexto del objeto.
+persona.saludar();
 
-Ejemplo corregido (arrow function)
+Resultado:
+
+❌ undefined
 ````
-const mascota = {
-  nombre: "Thor",
-  mostrar() {
+🎤 Guion
+
+Aquí ocurre un error muy común. La función dentro de setTimeout se ejecuta sola, entonces this ya no apunta al objeto persona.
+
+ARROW FUNCTION AL RESCATE
+````
+const persona = {
+  nombre: "Camila",
+  saludar: function () {
     setTimeout(() => {
       console.log(this.nombre);
     }, 1000);
   }
 };
 
-mascota.mostrar();
+persona.saludar();
+
+Resultado:
+
+✔️ Camila
 ````
-Resultado
--> Thor
+La arrow function soluciona este problema porque no crea su propio this.
+Usa el this del lugar donde fue creada.
+
+REGLA CLAVE:
+
+- Arrow functions NO tienen this
+- Heredan el this del contexto donde se crean
+
+
+¿CUÁNDO USAR ARROW FUNCTIONS?
+Usar arrow functions:
+
+- Callbacks
+- setTimeout / setInterval
+- forEach, map, filter
+
+Las arrow functions son ideales para funciones internas,pero no se recomienda usarlas como métodos principales de un objeto.
+
+Para concluir, las arrow functions nos ayudan a evitar errores con this porque mantienen el contexto donde fueron creadas.
+Por eso son tan usadas en JavaScript moderno.
 
 ----------------------------------------
 # 🔗 bind
