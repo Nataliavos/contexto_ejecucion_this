@@ -186,7 +186,7 @@ Resultado
 -> Thor
 
 ----------------------------------------
-🔗 bind
+# 🔗 bind
 ¿Qué hace?
 -Crea una nueva función
 -Fija el valor de this
