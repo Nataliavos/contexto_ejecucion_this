@@ -166,7 +166,6 @@ Piensa en this como una flecha que apunta a algo según cómo llamas la función
 
 ----------------------------------------
 # ➡️ Arrow Functions y this
-# ➡️ Arrow Functions y this
 ¿QUÉ ES UNA FUNCIÓN?
 
 Es un bloque de código
@@ -219,7 +218,6 @@ Resultado:
 
 ❌ undefined
 ````
-🎤 Guion
 
 Aquí ocurre un error muy común. La función dentro de setTimeout se ejecuta sola, entonces this ya no apunta al objeto persona.
 
