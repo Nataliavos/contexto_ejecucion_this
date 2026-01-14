@@ -215,6 +215,7 @@ saludar.call(persona);
 ----------------------------------------
 #📦 apply
 El método `.apply()` es una herramienta fundamental en JavaScript para manejar el contexto de las funciones (el valor de `this`). Aunque con la llegada de ES6 (funciones de flecha y el operador *spread*) se usa menos, sigue siendo esencial para entender cómo funciona el lenguaje.
+
 ---
 
 ## ¿Qué es `.apply()`?
