@@ -30,78 +30,122 @@ Analogía
 this es como decir “yo”.
 El significado de “yo” cambia dependiendo de quién esté hablando.
 
-🌍 this en el contexto global
-````
-console.log(this);
-````
-Resultado (en el navegador)
--> this apunta a window.
-Cuando usamos this fuera de cualquier objeto o clase, JavaScript entiende que estamos en el contexto global, por eso apunta al objeto window.
 
-----------------------------------------
-🧍 this dentro de un objeto
+--------------------------------------
+THIS EN DIFERENTES CONTEXTOS
+
+1️⃣ Lexical Binding — Arrow Functions
+📌 Las funciones flecha NO tienen su propio this
+Heredan el this del contexto donde fueron creadas.
 ````
-const persona = {
-  nombre: "Natalia",
+const obj = {
+  nombre: "Ana",
   saludar() {
+    setTimeout(() => {
+      console.log(this.nombre);
+    }, 500);
+  }
+};
+
+obj.saludar();
+````
+🔹 this → obj
+🔹 Funciona porque la flecha hereda el this de saludar
+✅ Usar cuando quieres conservar el this exterior
+
+
+2️⃣ New Binding — Instanciar objetos (new)
+Cuando usas new, this apunta al nuevo objeto creado.
+````
+function Persona(nombre) {
+  this.nombre = nombre;
+}
+
+const p1 = new Persona("Carlos");
+console.log(p1.nombre);
+````
+🔹 this → el nuevo objeto p1
+📌 new tiene alta prioridad
+
+
+3️⃣ Explicit Binding — call / apply / bind
+Aquí tú decides qué será this.
+````
+function saludar() {
+  console.log(this.nombre);
+}
+
+const usuario = { nombre: "Laura" };
+
+saludar.call(usuario);
+````
+🔹 this → usuario
+call(this, a, b)
+apply(this, [a, b])
+bind(this) → devuelve una nueva función
+📌 Es la forma más explícita y controlada
+
+
+4️⃣ Implicit Binding — Invocación como método
+Si una función se llama desde un objeto, this es ese objeto.
+````
+const mascota = {
+  nombre: "Max",
+  hablar() {
     console.log(this.nombre);
   }
 };
 
-persona.saludar();
+mascota.hablar();
 ````
-Resultado
--> Natalia
+🔹 this → mascota
+📌 Es el caso más común
 
-La función es llamada por el objeto persona.
-this hace referencia a ese objeto.
 
-Analogía
-Cuando digo “mi nombre”, el “mi” se refiere a mí misma.
-
-----------------------------------------
-⚠️ this en funciones normales
+5️⃣ Default Binding — Invocación directa
+Cuando usamos this fuera de cualquier objeto o clase, JavaScript entiende que estamos en el contexto global, por eso apunta al objeto window.
 ````
-function mostrarThis() {
+function mostrar() {
   console.log(this);
 }
 
-mostrarThis();
+mostrar();
 ````
-Resultado
-this → window (en modo no estricto).
+🔹 En navegador → window
+🔹 En modo estricto → undefined
+📌 Es la razón de muchos errores con this
 
-Como la función no pertenece a ningún objeto, JavaScript usa el contexto global.
 
-----------------------------------------
-🖱️ this en eventos
+🥇 Orden de prioridad (muy importante)
+Si varias reglas aplican, gana la de mayor prioridad:
+
+New Binding
+Explicit Binding (call, apply, bind)
+Implicit Binding
+Default Binding
+Arrow Functions → no compiten, heredan
+
+
+🧩 1️⃣ Diagrama mental del this
+Piensa en this como una flecha que apunta a algo según cómo llamas la función:
 ````
-<button onclick="console.log(this)">Click</button>
+¿Se usó new?
+   └── sí → this = nuevo objeto 🆕
+   └── no ↓
+
+¿Se usó call / apply / bind?
+   └── sí → this = objeto que tú indicas 👉
+   └── no ↓
+
+¿La función se llamó desde un objeto?
+   └── sí → this = ese objeto 📦
+   └── no ↓
+
+¿Es arrow function?
+   └── sí → hereda this del contexto padre 🧬
+   └── no → this = window / undefined 🌍
 ````
-Resultado
--> this apunta al botón.
-En los eventos, this hace referencia al elemento HTML que recibe la acción.
 
-----------------------------------------
-🧱 this en clases
-````
-class Usuario {
-  constructor(nombre) {
-    this.nombre = nombre;
-  }
-
-  saludar() {
-    console.log(this.nombre);
-  }
-}
-
-const user = new Usuario("Natalia");
-user.saludar();
-````
-this apunta a la instancia creada con new.
-
-Analogía
-Cada objeto creado con una clase tiene su propia identidad.
 
 ----------------------------------------
 ➡️ Arrow Functions y this
