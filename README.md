@@ -220,7 +220,7 @@ Es decir, con call nosotros decidimos quién será this.
 *Ejemplo simple*
 
 Si tengo una función normal y un objeto, puedo usar call para que esa función use los datos del objeto, aunque no pertenezca a él.
-´´´´
+```javascript
 // Función normal
 function saludar() {
   console.log("Hola, soy " + this.nombre);
@@ -238,32 +238,32 @@ saludar();
 // Llamada USANDO call
 saludar.call(persona); 
 // Resultado: Hola, soy Laura
-´´´´
+```
 
 *Ejemplo visual paso a paso*
 
 Paso 1️⃣ Función normal
-´´´´
+```javascript
 function saludar() {
   console.log("Hola, soy " + this.nombre);
 }
-´´´´
+```
 
 📌 Esta función usa this, pero no sabe quién es this todavía.
 
 Paso 2️⃣ Creamos un objeto
-´´´´
+```javascript
 const persona = {
   nombre: "Laura"
 };
-´´´´
+```
 
 📌 Tenemos un objeto con la propiedad nombre.
 
 Paso 3️⃣ Ejecutamos la función SIN call
-´´´´
+```javascript
 saludar();
-´´´´
+```
 
 🧠 ¿Qué pasa?
 
@@ -271,24 +271,24 @@ this NO apunta a persona
 this.nombre no existe
 
 ❌ Resultado:
-´´´´
+```javascript
 Hola, soy undefined
-´´´´
+```
 Paso 4️⃣ Ejecutamos la función CON call
-´´´´
+```javascript
 saludar.call(persona);
-´´´´
+```
 
 🧠 ¿Qué está pasando ahora?
 
 call dice: 👉 “Oye función, usa persona como this”
 
 ✅ Resultado:
-´´´´
+```javascript
 Hola, soy Laura
-´´´´
+```
 *call con parámetros*
-´´´´
+```javascript
 function presentar(edad) {
   console.log(
     "Hola, soy " + this.nombre + " y tengo " + edad + " años"
@@ -296,12 +296,12 @@ function presentar(edad) {
 }
 
 presentar.call(persona, 20);
-´´´´
+```
 
 ✅ Resultado:
-´´´´
+```javascript
 Hola, soy Laura y tengo 20 años
-´´´´
+```
 call ejecuta una función y permite definir manualmente el valor de this.
 
 ----------------------------------------
