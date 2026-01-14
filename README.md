@@ -211,13 +211,13 @@ saludarPersona();
 En JavaScript, this hace referencia al objeto que está usando una función en el momento en que se ejecuta.
 El problema es que a veces this no apunta al objeto que esperamos, y para eso existen métodos como call, apply y bind.
 
-*¿Qué es call?*
+**¿Qué es call?**
 
 call es un método que nos permite ejecutar una función indicando manualmente cuál será el valor de this.
 
 Es decir, con call nosotros decidimos quién será this.
 
-*Ejemplo simple*
+**Ejemplo simple**
 
 Si tengo una función normal y un objeto, puedo usar call para que esa función use los datos del objeto, aunque no pertenezca a él.
 ```javascript
@@ -240,7 +240,7 @@ saludar.call(persona);
 // Resultado: Hola, soy Laura
 ```
 
-*Ejemplo visual paso a paso*
+**Ejemplo visual paso a paso**
 
 Paso 1️⃣ Función normal
 ```javascript
@@ -265,7 +265,7 @@ Paso 3️⃣ Ejecutamos la función SIN call
 saludar();
 ```
 
-🧠 ¿Qué pasa?
+🧠 **¿Qué pasa?**
 
 this NO apunta a persona
 this.nombre no existe
@@ -279,7 +279,7 @@ Paso 4️⃣ Ejecutamos la función CON call
 saludar.call(persona);
 ```
 
-🧠 ¿Qué está pasando ahora?
+🧠 **¿Qué está pasando ahora?**
 
 call dice: 👉 “Oye función, usa persona como this”
 
@@ -287,7 +287,7 @@ call dice: 👉 “Oye función, usa persona como this”
 ```javascript
 Hola, soy Laura
 ```
-*call con parámetros*
+**call con parámetros**
 ```javascript
 function presentar(edad) {
   console.log(
