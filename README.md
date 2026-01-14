@@ -206,7 +206,7 @@ saludarPersona();
 ----------------------------------------
 # ☎️ call
 
-*Introducción*
+**Introducción**
 
 En JavaScript, this hace referencia al objeto que está usando una función en el momento en que se ejecuta.
 El problema es que a veces this no apunta al objeto que esperamos, y para eso existen métodos como call, apply y bind.
