@@ -1,4 +1,4 @@
-📘 README
+## 📘 README
 Exposición JavaScript – Contexto de ejecución y this
 Curso: JavaScript – Entrenamiento como Desarrollador de Software
 Tema: Contexto de ejecución y this
@@ -32,7 +32,7 @@ El significado de “yo” cambia dependiendo de quién esté hablando.
 
 
 --------------------------------------
-THIS EN DIFERENTES CONTEXTOS
+# THIS EN DIFERENTES CONTEXTOS
 
 1️⃣ Lexical Binding — Arrow Functions
 📌 Las funciones flecha NO tienen su propio this
@@ -148,7 +148,7 @@ Piensa en this como una flecha que apunta a algo según cómo llamas la función
 
 
 ----------------------------------------
-➡️ Arrow Functions y this
+# ➡️ Arrow Functions y this
 Idea clave: Las arrow functions NO crean su propio this.
 Heredan el this del contexto donde fueron creadas.
 
@@ -204,7 +204,7 @@ saludarPersona();
 ````
 
 ----------------------------------------
-☎️ call
+# ☎️ call
 ¿Qué hace?
 -Ejecuta la función inmediatamente
 -Permite definir el valor de this
@@ -213,7 +213,7 @@ saludar.call(persona);
 ````
 
 ----------------------------------------
-#📦 apply
+# 📦 apply
 El método `.apply()` es una herramienta fundamental en JavaScript para manejar el contexto de las funciones (el valor de `this`). Aunque con la llegada de ES6 (funciones de flecha y el operador *spread*) se usa menos, sigue siendo esencial para entender cómo funciona el lenguaje.
 
 ---
