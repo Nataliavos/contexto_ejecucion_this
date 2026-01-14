@@ -20,11 +20,25 @@ Si el público entiende esta frase, el objetivo está cumplido.
 🗣️ Introducción
 Hoy vamos a hablar sobre el contexto de ejecución y la palabra clave this en JavaScript.
 Este es uno de los temas que más confunde cuando uno empieza, así que la idea no es memorizar reglas, sino entenderlo con ejemplos y situaciones del día a día.
-
-🧩 ¿Qué es this?
+----------------------------------------
+# Qué es this?
 this es una palabra reservada de JavaScript.
 Hace referencia al objeto que está ejecutando una función en ese momento.
 Su valor no es fijo, cambia según el contexto.
+
+const usuario = {
+  nombre: "Ana",
+  rol: "Administradora",
+  saludar() {
+    console.log("Hola, soy " + this.nombre);
+  },
+  mostrarRol() {
+    console.log("Mi rol es " + this.rol);
+  }
+};
+
+usuario.saludar();
+usuario.mostrarRol();
 
 Analogía
 this es como decir “yo”.
@@ -191,18 +205,48 @@ Resultado
 -Crea una nueva función
 -Fija el valor de this
 -NO ejecuta la función inmediatamente
+⚠️ ¿Qué pasa si reutilizamos una función sin controlar this?
+Si intentamos sacar un método del objeto y usarlo aparte, el valor de this puede cambiar o perderse.
+Esto puede provocar que this.nombre o this.rol se vuelvan undefined.
 
-````
-function saludar() {
-  console.log(this.nombre);
+const usuario1 = {
+    nombre: "Ana",
+    rol: "administradora",
+    presentarse () {
+        console.log (`hola, soy ${this.nombre} y soy ${this.rol}`);
+    }
+};
+
+const usuario2 = {
+    nombre : "carlos",
+    rol : "editor"
+};
+
+const usuario3 = {
+    nombre: "guillermo",
+    rol: "voluntario"
 }
 
-const persona = { nombre: "Natalia" };
-const saludarPersona = saludar.bind(persona);
+//Primer llamado del primer usario el cual tiene la funcion original
 
-saludarPersona();
-````
+console.log()
+usuario1.presentarse(); 
 
+//ahora hacemos el ejercicio, de hacer un llamado de la funcion sin el bind que ancle al this, para verificar el error
+
+console.log()
+const presentarsesinBind = usuario1.presentarse;
+presentarsesinBind(); 
+
+//ahora procederemos a crear el ejemplo del bind pero ahora si aclando this a la funcion para permitirnos usarlo fuera del objeto original 
+
+console.log()
+const presentarsecarlos = usuario1.presentarse.bind(usuario2)
+presentarsecarlos();
+
+console.log()
+const presentarseguillermo = usuario1.presentarse.bind(usuario3); 
+presentarseguillermo(); 
 ----------------------------------------
 # ☎️ call
 
