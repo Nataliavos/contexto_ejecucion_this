@@ -26,7 +26,8 @@ this es una palabra reservada de JavaScript.
 Hace referencia al objeto que está ejecutando una función en ese momento.
 Su valor no es fijo, cambia según el contexto.
 
-````const usuario = {
+````
+const usuario = {
   nombre: "Ana",
   rol: "Administradora",
   saludar() {
@@ -38,7 +39,8 @@ Su valor no es fijo, cambia según el contexto.
 };
 
 usuario.saludar();
-usuario.mostrarRol();````
+usuario.mostrarRol();
+````
 
 Analogía
 this es como decir “yo”.
@@ -209,7 +211,8 @@ Resultado
 Si intentamos sacar un método del objeto y usarlo aparte, el valor de this puede cambiar o perderse.
 Esto puede provocar que this.nombre o this.rol se vuelvan undefined.
 
-````const usuario1 = {
+````
+const usuario1 = {
     nombre: "Ana",
     rol: "administradora",
     presentarse () {
@@ -246,7 +249,8 @@ presentarsecarlos();
 
 console.log()
 const presentarseguillermo = usuario1.presentarse.bind(usuario3); 
-presentarseguillermo();```` 
+presentarseguillermo();
+```` 
 ----------------------------------------
 # ☎️ call
 
