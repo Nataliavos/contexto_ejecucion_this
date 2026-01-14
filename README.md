@@ -205,12 +205,104 @@ saludarPersona();
 
 ----------------------------------------
 # ☎️ call
-¿Qué hace?
--Ejecuta la función inmediatamente
--Permite definir el valor de this
-````
+
+*Introducción*
+
+En JavaScript, this hace referencia al objeto que está usando una función en el momento en que se ejecuta.
+El problema es que a veces this no apunta al objeto que esperamos, y para eso existen métodos como call, apply y bind.
+
+*¿Qué es call?*
+
+call es un método que nos permite ejecutar una función indicando manualmente cuál será el valor de this.
+
+Es decir, con call nosotros decidimos quién será this.
+
+*Ejemplo simple*
+
+Si tengo una función normal y un objeto, puedo usar call para que esa función use los datos del objeto, aunque no pertenezca a él.
+´´´´
+// Función normal
+function saludar() {
+  console.log("Hola, soy " + this.nombre);
+}
+
+// Objeto
+const persona = {
+  nombre: "Laura"
+};
+
+// Llamada SIN usar call
+saludar(); 
+// Resultado: Hola, soy undefined
+
+// Llamada USANDO call
+saludar.call(persona); 
+// Resultado: Hola, soy Laura
+´´´´
+
+*Ejemplo visual paso a paso*
+
+Paso 1️⃣ Función normal
+´´´´
+function saludar() {
+  console.log("Hola, soy " + this.nombre);
+}
+´´´´
+
+📌 Esta función usa this, pero no sabe quién es this todavía.
+
+Paso 2️⃣ Creamos un objeto
+´´´´
+const persona = {
+  nombre: "Laura"
+};
+´´´´
+
+📌 Tenemos un objeto con la propiedad nombre.
+
+Paso 3️⃣ Ejecutamos la función SIN call
+´´´´
+saludar();
+´´´´
+
+🧠 ¿Qué pasa?
+
+this NO apunta a persona
+this.nombre no existe
+
+❌ Resultado:
+´´´´
+Hola, soy undefined
+´´´´
+Paso 4️⃣ Ejecutamos la función CON call
+´´´´
 saludar.call(persona);
-````
+´´´´
+
+🧠 ¿Qué está pasando ahora?
+
+call dice: 👉 “Oye función, usa persona como this”
+
+✅ Resultado:
+´´´´
+Hola, soy Laura
+´´´´
+*call con parámetros*
+´´´´
+function presentar(edad) {
+  console.log(
+    "Hola, soy " + this.nombre + " y tengo " + edad + " años"
+  );
+}
+
+presentar.call(persona, 20);
+´´´´
+
+✅ Resultado:
+´´´´
+Hola, soy Laura y tengo 20 años
+´´´´
+call ejecuta una función y permite definir manualmente el valor de this.
 
 ----------------------------------------
 # 📦 apply
