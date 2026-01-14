@@ -24,7 +24,8 @@ Este es uno de los temas que más confunde cuando uno empieza, así que la idea 
 # Qué es this?
 this es una palabra reservada de JavaScript.
 Hace referencia al objeto que está ejecutando una función en ese momento.
-Su valor no es fijo, cambia según el contexto.
+Su valor no es fijo, cambia según el contexto...
+this es una palabra clave muy importante en JavaScript porque sirve para referirse al objeto desde el cual se está ejecutando una función.
 
 ````
 const usuario = {
